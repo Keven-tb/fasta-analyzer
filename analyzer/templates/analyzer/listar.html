@@ -1,0 +1,34 @@
+{% extends 'analyzer/base.html' %}
+
+{% block conteudo %}
+    <h1>Sequências analisadas</h1>
+
+    {% if sequencias %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tamanho</th>
+                    <th>%GC</th>
+                    <th>Complemento reverso</th>
+                    <th>Enviado em</th>
+                    <th>Arquivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for seq in sequencias %}
+                <tr>
+                    <td>{{ seq.nome_sequencia }}</td>
+                    <td>{{ seq.tamanho }}</td>
+                    <td>{{ seq.gc_percentual }}%</td>
+                    <td><code>{{ seq.complemento_reverso }}</code></td>
+                    <td>{{ seq.enviado_em|date:"d/m/Y H:i" }}</td>
+                    <td><a href="{{ seq.arquivo.url }}" target="_blank">baixar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhuma sequência enviada ainda.</p>
+    {% endif %}
+{% endblock %}

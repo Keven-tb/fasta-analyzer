@@ -1,0 +1,12 @@
+{% extends 'analyzer/base.html' %}
+
+{% block conteudo %}
+    <h1>Enviar arquivo FASTA</h1>
+    <p>Envie um arquivo .fasta contendo uma ou mais sequências — apenas a primeira será processada.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Analisar</button>
+    </form>
+{% endblock %}
